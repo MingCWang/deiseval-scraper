@@ -11,9 +11,9 @@ This is a RESTful API that provides information about Brandeis courses. The API 
 ## Database Setup Process
 ### Install ODBC driver and connect to SQL server
 
-`pip install --no-binary :all: pyodbc` // install error solution 
-`odbcinst -q -d` // check if driver is installed
-`sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;"` // connect to sql server with sqlcmd
+- `pip install --no-binary :all: pyodbc` // install error solution 
+- `odbcinst -q -d` // check if driver is installed
+- `sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;"` // connect to sql server with sqlcmd
 
 ### Challenges 
 #### Cannot connect to the sql server 
@@ -40,6 +40,18 @@ This is a RESTful API that provides information about Brandeis courses. The API 
 ### Creating a database
 - `createdb` is a wrapper around the SQL command `CREATE DATABASE`. 
 - `dropdb` is a wrapper around the SQL command `DROP DATABASE`. 
+```
+cursor.execute('''CREATE TABLE course_data (
+    id serial PRIMARY KEY,
+    course varchar(255),
+    courseTitle varchar(255),
+    syllabus varchar(255),
+    instructor varchar(255),
+    term varchar(255),
+    requirements varchar(255)[], -- Assuming it's an array
+    description text
+    );''')
+```
 Ran into an error when creating a database, the error message is 
 ```bash
 createdb: error: connection to server on socket "/tmp/.s.PGSQL.5432" failed: No such file or directory Is the server running locally and accepting connections on that socket?
@@ -48,6 +60,16 @@ Solution: used postgres.app instead of homebrew to install postgresql, and it wo
 - Initialized databse cluster 
 ### Connecting to a database from python
 - `psycopg2` is a PostgreSQL database adapter for the Python programming language.
+```
+connection = psycopg2.connect(
+	host="localhost",         # Hostname or IP address of your database server
+	database="courses",  # Name of your database
+	user="minstonewang",     # Your PostgreSQL username
+	password=""  # Your PostgreSQL password
+)
+cursor = connection.cursor()
+    
+```
 ### SQL types 
 - `int` is a signed integer that has a maximum precision of 32 bits.
 - `smallint` is a signed integer that has a maximum precision of 16 bits.
