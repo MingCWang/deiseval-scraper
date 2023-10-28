@@ -10,20 +10,21 @@ This is a RESTful API that provides information about Brandeis courses. The API 
 ## API Endpoints
 ## Database Setup Process
 ### Install ODBC driver and connect to SQL server
-```bash
-pip install --no-binary :all: pyodbc // install error solution 
-odbcinst -q -d // check if driver is installed
-sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;" // connect to sql server with sqlcmd
-```
+
+`pip install --no-binary :all: pyodbc` // install error solution 
+`odbcinst -q -d` // check if driver is installed
+`sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;"` // connect to sql server with sqlcmd
+
 ### Challenges 
-Cannot connect to the sql server 
+#### Cannot connect to the sql server 
 - install pyodbc
 - install pymssql but failed to install the library, seems like the library is not compatible with my environment
 - checked the firewall setting, the port 1433 is open, and ip address is allowed
 - checked the server name, username and password, all correct
 - checked the odbc driver, the driver is installed
 - tried increasing connection timeout, but still failed
-Resorted to using postgresql instead
+
+#### Resorted to using postgresql instead
 - installed postgresql with postgres.app
 - installed psycopg2
 - successfully connected to the database
