@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import Select
-
+ 
 from helper_function import select_subject, select_term, get_data_from_popup, find_class_table, get_course_data, navigate_to_current_term, driver
 import time
 import json
