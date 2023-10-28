@@ -51,9 +51,8 @@ Solution: used postgres.app instead of homebrew to install postgresql, and it wo
 ### psql 
 - `psql` is a terminal-based front-end to PostgreSQL. It enables you to type in queries interactively, issue them to PostgreSQL, and see the query results.
 basic commands
-```bash
-\l // list all databases
-\c // connect to a database
-\dt // list all tables in the current database
-\q // quit
-```
+- `\l` // list all databases
+- `\c` // connect to a database
+- `\dt` // list all tables in the current database
+- `\q` // quit
+
