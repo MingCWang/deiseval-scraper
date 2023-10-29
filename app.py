@@ -15,28 +15,30 @@ try:
     # Perform database operations here
     with open("data.json", "r") as json_file:
         data_list = json.load(json_file)
+
      
-    print(data_list[0])
-     
-    # cursor.execute('''CREATE TABLE course_data (
-    # id serial PRIMARY KEY,
-    # course varchar(255),
-    # courseTitle varchar(255),
-    # syllabus varchar(255),
-    # instructor varchar(255),
-    # term varchar(255),
-    # requirements varchar(255)[], -- Assuming it's an array
-    # description text
-    # );''')
+    cursor.execute("DROP TABLE IF EXISTS course_data;")
+    
+    cursor.execute('''CREATE TABLE course_data (
+    id serial PRIMARY KEY,
+    course text,
+    courseTitle text,
+    syllabus text,
+    instructor text,
+    term text,
+    requirements text[], -- Assuming it's an array
+    prerequisites text,
+    description text
+    );''')
     
     
-#     insert_query = """
-# INSERT INTO course_data (course, courseTitle, syllabus, instructor, term, requirements, description)
-# VALUES (%(course)s, %(courseTitle)s, %(syllabus)s, %(instructor)s, %(term)s, %(requirements)s, %(description)s);
-# """
-#     print("Inserting data into the database...")
-#     for data in data_list:
-#         cursor.execute(insert_query, data)
+    insert_query = """
+INSERT INTO course_data (course, courseTitle, syllabus, instructor, term, requirements, prerequisites, description)
+VALUES (%(course)s, %(courseTitle)s, %(syllabus)s, %(instructor)s, %(term)s, %(requirements)s, %(prerequisites)s, %(description)s);
+"""
+    print("Inserting data into the database...")
+    for data in data_list:
+        cursor.execute(insert_query, data)
 
     cursor.execute("COPY (SELECT * FROM course_data) TO '/Users/minstonewang/Desktop/courses.csv' DELIMITER ',' CSV HEADER;")
     

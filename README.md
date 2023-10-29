@@ -1,6 +1,6 @@
 # Brandeis Courses API 
 ## Description
-This is a RESTful API that provides information about Brandeis courses. The API is built with Python Flask. The database is built with PostgreSQL deployed on AWS RDS.
+This is a RESTful API that provides information about Brandeis courses that was scraped from the course registrar website with Selenium. The API is built with Python Flask. The database is built with PostgreSQL deployed on AWS RDS.
 ## Table of Contents
 - [API Endpoints](#api-endpoints)
 - [Database Setup Process](#database-setup-process)
@@ -8,12 +8,19 @@ This is a RESTful API that provides information about Brandeis courses. The API 
 - [Postgresql Notes](#postgresql-notes)
 
 ## API Endpoints
+## Tech Stack
+- Python
+- Flask
+- PostgreSQL
+- AWS RDS
+- Selenium
+
 ## Database Setup Process
 ### Install ODBC driver and connect to SQL server
 
-- `pip install --no-binary :all: pyodbc` // install error solution 
-- `odbcinst -q -d` // check if driver is installed
-- `sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;"` // connect to sql server with sqlcmd
+- `pip install --no-binary :all: pyodbc` install error solution 
+- `odbcinst -q -d`check if driver is installed
+- `sqlcmd -S servername.database.windows.net,1433 -U "username" -P 'password' -Q "use mydb;"` connect to sql server with sqlcmd
 
 ### Challenges 
 #### Cannot connect to the sql server 

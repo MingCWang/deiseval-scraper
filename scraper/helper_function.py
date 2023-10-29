@@ -34,22 +34,41 @@ def select_term(i, count, driver):
         count += 1
     return i
    
+'''
+To Do: NEED TO SOLVE WHY THIS IS INDEX OUT OF RANGE FROM THE POPUP TEXT
+
+'''
 def get_data_from_popup(driver, links):
     '''get course description from the popup'''
     try:
         popup_link = links[0].get_attribute('href')[18:].split(',')[0].split("%")[0]
         popup_link = "https://registrar-prod.unet.brandeis.edu/registrar/schedule/" + popup_link
         driver.get(popup_link)
+        # print("------------------")
         text = driver.find_element(By.XPATH, "//div[@id='coursepage']/p").text.split('\n')
+        if text == ['']: # if the p tag is empty, then the description is in the second p tag
+            text = driver.find_element(By.XPATH, "//div[@id='coursepage']/p[2]").text.split('\n')
+        try: # edge case where the description is in the 4th p tag
+            description = WebDriverWait(driver, 0.5).until(EC.presence_of_element_located((By.XPATH, "//div[@id='coursepage']/p[4]")))
+            if description.text != '':
+                text = description.text.split('\n')
+        except: 
+            pass
+        # print(text)
         text = [line for line in text if line != '']
-        if len(text) == 2:
+        
+        if len(text) == 2 or len(text) == 1:
             description = text[0]
             prerequisites = ""
-        else:
+        elif len(text) != 0: 
             description = text[1]
             prerequisites = text[0]
+        else: 
+            description = ""
+            prerequisites = ""
     except Exception as e:
         print('Error in get_data_from_popup', e)
+    # print(description, prerequisites)
     return description, prerequisites
 
 def find_class_table(driver):
@@ -82,7 +101,7 @@ def get_course_data(class_list, i, driver):
 def navigate_to_current_term(driver, value, count):
     if count == 3: # loop through terms based on the options value
         count = 1
-        value += 8
+        value += 8 
     else:
         value += 1
         count += 1

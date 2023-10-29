@@ -53,10 +53,10 @@ def scraper(driver, start, end):
     return data_list, course_count
 
 def main():
-    # start = 1201 
-    start = 1213
-    end = 1213
-    # end = 1233
+    start = 1201 
+    # start = 1213
+    # end = 1213
+    end = 1233
     webdriver = driver()
     start_time = time.time()
      
