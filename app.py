@@ -40,7 +40,7 @@ VALUES (%(course)s, %(courseTitle)s, %(syllabus)s, %(instructor)s, %(term)s, %(r
     for data in data_list:
         cursor.execute(insert_query, data)
 
-    cursor.execute("COPY (SELECT * FROM course_data) TO '/Users/minstonewang/Desktop/courses.csv' DELIMITER ',' CSV HEADER;")
+    cursor.execute("COPY (SELECT * FROM course_data) TO '/Users/minstonewang/Development/projects/deis-course-web-scraper/courses.csv' DELIMITER ',' CSV HEADER;")
     
 except (Exception, psycopg2.Error) as error:
     print(f"Error while connecting to the database: {error}")

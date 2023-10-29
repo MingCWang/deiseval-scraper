@@ -2,4 +2,4 @@
 .vscode
 chromedriver_mac64
 secret.sh
-data.json
+*.json
