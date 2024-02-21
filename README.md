@@ -1,19 +1,11 @@
-# Brandeis Courses API 
+# Brandeis Courses Scraper
 ## Description
-This is a RESTful API that provides information about Brandeis courses that was scraped from the course registrar website with Selenium. The API is built with Python Flask. The database is built with PostgreSQL deployed on AWS RDS.
-## Table of Contents
-- [API Endpoints](#api-endpoints)
-- [Database Setup Process](#database-setup-process)
-- [Challenges](#challenges)
-- [Postgresql Notes](#postgresql-notes)
+This is a scraper to collect course data for a course evaluation website, deiseval.com. Here I document the process of learning how to use an SQL database.
 
-## API Endpoints
 ## Tech Stack
-- Python
-- Flask
-- PostgreSQL
-- AWS RDS
-- Selenium
+- `Python`
+- `PostgreSQL`
+- `Selenium`
 
 ## Database Setup Process
 ### Install ODBC driver and connect to SQL server
